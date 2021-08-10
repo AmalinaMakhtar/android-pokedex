@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private val dashboardViewModel by viewModel<HomeViewModel>()
+    private val homeViewModel by viewModel<HomeViewModel>()
     private lateinit var mViewDataBinding: FrgHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -27,10 +27,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mViewDataBinding.viewModel = dashboardViewModel
-        dashboardViewModel.getAllPokemon()
-        dashboardViewModel.pokemonList.observe(viewLifecycleOwner, Observer {
-            Log.d("[?]", "+++++ result : " + it.size)
+        mViewDataBinding.viewModel = homeViewModel
+        homeViewModel.getAllPokemon()
+        homeViewModel.pokemonList.observe(viewLifecycleOwner, Observer {
+
         })
     }
 }
