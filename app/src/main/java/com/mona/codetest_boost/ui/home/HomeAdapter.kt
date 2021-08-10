@@ -51,6 +51,11 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
 
             viewBinding.pokemonId = pokemonObj.pokemonId()
             viewBinding.itemCallback = listener
+
+            viewBinding.imgFavourite.setOnClickListener {
+
+            }
+
         }
     }
 
