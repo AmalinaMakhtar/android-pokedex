@@ -17,8 +17,14 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
+        style="@style/Widget.BottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_navigation"
+        app:itemIconTint="@drawable/bottom_navigation_item_selector"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Size.Active"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView.Size"
+        app:itemTextColor="@drawable/bottom_navigation_item_selector"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

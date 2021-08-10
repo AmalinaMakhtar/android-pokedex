@@ -41,13 +41,14 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
         fun onBind(position: Int) {
             val pokemonObj = pokemonList[position]
             viewBinding.pokemon = pokemonObj
-            viewBinding.txtPokemonName.text = pokemonObj!!.name
+            viewBinding.txtPokemonName.text = pokemonObj!!.name.capitalize()
 
             Glide
                 .with(context!!)
                 .load(pokemonObj.pokemonImage())
                 .centerCrop()
                 .into(viewBinding.imgPokemon)
+
             viewBinding.pokemonId = pokemonObj.pokemonId()
             viewBinding.itemCallback = listener
         }
