@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mona.codetest_boost.R
 import com.mona.codetest_boost.databinding.FrgHomeBinding
 import com.mona.codetest_boost.ui.ItemListener
+import com.mona.codetest_boost.ui.base.MainActivity
+import com.mona.codetest_boost.ui.pokemon.PokemonFragment
+import com.mona.codetest_boost.utils.addFragment
 import kotlinx.android.synthetic.main.frg_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,7 +42,6 @@ class HomeFragment : Fragment(), ItemListener {
                 adapter.setPokemon(it)
             }
         })
-
     }
 
     private fun initUI() {
@@ -49,6 +51,6 @@ class HomeFragment : Fragment(), ItemListener {
     }
 
     override fun onItemClick(id: String) {
-        TODO("Not yet implemented")
+        (activity as MainActivity).addFragment(PokemonFragment.newInstance(id), R.id.frag_container)
     }
 }

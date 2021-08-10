@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.mona.codetest_boost.R
 import com.mona.codetest_boost.data.models.Results
 import com.mona.codetest_boost.databinding.ItemPokemonBinding
@@ -38,8 +39,17 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun onBind(position: Int) {
-            val pokemon = pokemonList[position]
-            viewBinding.txtPokemonName.text = pokemon!!.name
+            val pokemonObj = pokemonList[position]
+            viewBinding.pokemon = pokemonObj
+            viewBinding.txtPokemonName.text = pokemonObj!!.name
+
+            Glide
+                .with(context!!)
+                .load(pokemonObj.pokemonImage())
+                .centerCrop()
+                .into(viewBinding.imgPokemon)
+            viewBinding.pokemonId = pokemonObj.pokemonId()
+            viewBinding.itemCallback = listener
         }
     }
 

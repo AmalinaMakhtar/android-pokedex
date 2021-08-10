@@ -9,4 +9,13 @@ data class Results(
     override fun toString(): String {
         return "Results(name='$name', url='$url')"
     }
+
+    fun pokemonId() : String {
+        return url.substringAfter("https://pokeapi.co/api/v2/pokemon/").removeSuffix("/")
+    }
+
+    fun pokemonImage() : String {
+        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId()}.png"
+    }
+
 }
