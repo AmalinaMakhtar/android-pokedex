@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,28 +14,64 @@
     </data>
 
     <RelativeLayout
-        android:background="@color/off_white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/off_white"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:id="@+id/headerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/spacing_0.5x"
+            android:paddingEnd="@dimen/spacing_0.5x"
+            android:weightSum="10">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlPassword"
+                style="@style/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_weight="8"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edSearchCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_search_border"
+                    android:hint="Search..."
+                    android:imeOptions="actionGo"
+                    android:padding="@dimen/spacing_1x" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/btnfilter"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/spacing_0.75x"
+                android:layout_weight="2"
+                android:elevation="6dp"
+                android:src="@drawable/btn_filter" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPokemon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/headerContainer"
             android:layout_centerHorizontal="true"
-            android:padding="16dp"
             android:visibility="@{viewModel.showError == null ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:itemCount="5"
             tools:listitem="@layout/item_pokemon" />
-
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="@{viewModel.showLoading ? View.VISIBLE : View.GONE}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,6 +96,13 @@
                 tools:text="Something went wrong!" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewModel.showLoading ? View.VISIBLE : View.GONE}" />
 
     </RelativeLayout>
 </layout>
