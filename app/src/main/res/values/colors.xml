@@ -7,4 +7,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="poke_red">#F7786A</color>
+    <color name="poke_red_light">#F98B7E</color>
+
+    <color name="poke_green">#4FC1A6</color>
+    <color name="poke_green_light">#66D4BD</color>
+
+    <color name="poke_blue">#58AAF6</color>
+    <color name="poke_blue_light">#6FC1F9</color>
+
+    <color name="poke_purple">#7C548C</color>
+    <color name="poke_purple_light">#9569A5</color>
+
+    <color name="poke_yellow">#FFCE4B</color>
+    <color name="poke_yellow_light">#FFDA5B</color>
+
+    <color name="poke_brown">#B6746E</color>
+    <color name="poke_brown_light">#C1867F</color>
+
+    <color name="poke_grey">#F5F5F6</color>
+    <color name="poke_background">#FFFFFF</color>
 </resources>
