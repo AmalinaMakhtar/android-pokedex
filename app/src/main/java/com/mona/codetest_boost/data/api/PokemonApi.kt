@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface PokemonApi {
 
-    @GET("pokemon/")
+    @GET("pokemon")
     suspend fun getAllPokemon(): Response<General>
 
 }
