@@ -30,7 +30,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@{pokemonType}"
             android:paddingEnd="@dimen/activity_horizontal_margin"
             app:title="Pokemon Details">
 
@@ -44,143 +43,151 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <RelativeLayout
             android:id="@+id/container_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgPokemon"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:scaleType="center" />
-
-            </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgPokemon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:scaleType="center" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imgPokemon"
                 android:gravity="center"
-                android:padding="@dimen/activity_horizontal_margin"
                 android:text="@{pokemon.name}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="@color/black"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 tools:text="Pikachu" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/containerPhysical"
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/container_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/container_image">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center">
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/containerWeight"
-                    android:layout_width="0dp"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/containerPhysical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_horizontal_margin">
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtWeight"
-                        android:layout_width="wrap_content"
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{pokemon.getPokemonWeight}"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        tools:text="299KG" />
+                        android:layout_gravity="center"
+                        android:gravity="center">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/lblWeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txtWeight"
-                        android:text="Weight"
-                        android:textSize="16sp" />
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/containerWeight"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/activity_horizontal_margin">
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txtWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{pokemon.getPokemonWeight}"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                tools:text="299KG" />
 
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginVertical="@dimen/spacing_2x"
-                    android:background="#838E8E8E" />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/lblWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txtWeight"
+                                android:text="Weight"
+                                android:textSize="16sp" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/containerHeight"
-                    android:layout_width="0dp"
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="@dimen/spacing_2x"
+                            android:background="#838E8E8E" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/containerHeight"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/activity_horizontal_margin">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txtHeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{pokemon.getPokemonHeight}"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                tools:text="299KG" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/lblHeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txtWeight"
+                                android:text="Height"
+                                android:textSize="16sp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_horizontal_margin">
+                    android:layout_below="@+id/containerPhysical"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtHeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{pokemon.getPokemonHeight}"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        tools:text="299KG" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvStats"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_stat" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/lblHeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txtWeight"
-                        android:text="Height"
-                        android:textSize="16sp" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/containerPhysical"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvStats"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_stat" />
-
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 </layout>

@@ -1,15 +1,12 @@
 package com.mona.codetest_boost.ui.pokemon
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mona.codetest_boost.data.models.Pokemon
+import com.bumptech.glide.Glide
 import com.mona.codetest_boost.databinding.ActPokemonBinding
-import com.mona.codetest_boost.ui.home.HomeAdapter
 import kotlinx.android.synthetic.main.act_pokemon.*
 import kotlinx.android.synthetic.main.dlg_filter_card.*
 import kotlinx.android.synthetic.main.frg_home.*
@@ -46,6 +43,11 @@ class PokemonActivity : AppCompatActivity() {
         pokemonViewModel.pokemon.observe(this@PokemonActivity, Observer {
             binding.pokemon = it
             adapter.setStats(it!!.stats)
+
+            Glide.with(this@PokemonActivity)
+                .load(it.getImageUrl())
+                .centerCrop()
+                .into(binding.imgPokemon)
         })
 
         adapter = PokemonAdapter(this@PokemonActivity)
