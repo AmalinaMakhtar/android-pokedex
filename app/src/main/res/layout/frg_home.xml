@@ -44,6 +44,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_search_border"
                     android:hint="Search..."
+                    app:fontFamily="@font/museo_sans_500"
                     android:imeOptions="actionGo"
                     android:padding="@dimen/spacing_1x" />
 
@@ -93,6 +94,7 @@
                 android:text="@{viewModel.showError}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
+                app:fontFamily="@font/museo_sans_700"
                 tools:text="Something went wrong!" />
 
         </LinearLayout>

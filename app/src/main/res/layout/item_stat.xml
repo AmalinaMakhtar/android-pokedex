@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/spacing_1.5x"
         android:paddingHorizontal="@dimen/activity_horizontal_margin">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -28,6 +28,7 @@
             android:text="@{pokemonStats.stat.name.toUpperCase()}"
             android:textColor="@color/black"
             android:textSize="16sp"
+            app:fontFamily="@font/museo_sans_500"
             tools:text="Pokemon" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator

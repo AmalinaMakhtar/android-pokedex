@@ -22,6 +22,7 @@
             android:gravity="center"
             android:padding="@dimen/spacing_1x"
             android:text="Sort by"
+            app:fontFamily="@font/museo_sans_700"
             android:textColor="@color/poke_purple"
             android:textSize="20sp" />
 
@@ -48,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
+                app:fontFamily="@font/museo_sans_500"
                 android:textAlignment="center"
                 android:textAppearance="@style/customChipText" />
 
@@ -58,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="Type"
                 android:textAlignment="center"
+                app:fontFamily="@font/museo_sans_500"
                 android:textAppearance="@style/customChipText" />
 
             <com.google.android.material.chip.Chip
@@ -66,6 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Color"
+                app:fontFamily="@font/museo_sans_500"
                 android:textAlignment="center"
                 android:textAppearance="@style/customChipText" />
 
@@ -81,6 +85,7 @@
             android:background="@drawable/btn_rounded_primary"
             android:elevation="6dp"
             android:text="Confirm"
+            app:fontFamily="@font/museo_sans_700"
             android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
