@@ -12,10 +12,6 @@
             type="com.mona.codetest_boost.data.models.Pokemon" />
 
         <variable
-            name="pokemonType"
-            type="int" />
-
-        <variable
             name="viewModel"
             type="com.mona.codetest_boost.ui.pokemon.PokemonViewModel" />
 
@@ -30,7 +26,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
             app:title="Pokemon Details">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -44,7 +39,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <RelativeLayout
-            android:id="@+id/container_image"
+            android:id="@+id/containerImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
@@ -65,19 +60,19 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgPokemon"
                 android:gravity="center"
-                android:text="@{pokemon.name}"
+                android:text="@{pokemon.name.toUpperCase()}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="@color/black"
                 android:textSize="36sp"
                 android:textStyle="bold"
-                tools:text="Pikachu" />
+                tools:text="pikachu" />
 
         </RelativeLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/container_image">
+            android:layout_below="@+id/containerImage">
 
             <RelativeLayout
                 android:layout_width="match_parent"

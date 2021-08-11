@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingVertical="10dp"
-                android:text="@{pokemon.name}"
+                android:text="@{pokemon.name.toUpperCase()}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 tools:text="Pokemon" />

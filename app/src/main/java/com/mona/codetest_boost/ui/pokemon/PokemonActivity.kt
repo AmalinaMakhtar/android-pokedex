@@ -43,6 +43,8 @@ class PokemonActivity : AppCompatActivity() {
         pokemonViewModel.pokemon.observe(this@PokemonActivity, Observer {
             binding.pokemon = it
             adapter.setStats(it!!.stats)
+            binding.containerImage.setBackgroundColor(getColor(it.types.first().getTypeColor()))
+            binding.toolbar.setBackgroundColor(getColor(it.types.first().getTypeColor()))
 
             Glide.with(this@PokemonActivity)
                 .load(it.getImageUrl())

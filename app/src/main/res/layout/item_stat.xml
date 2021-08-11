@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@{pokemonStats.stat.name}"
+            android:text="@{pokemonStats.stat.name.toUpperCase()}"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             tools:text="Pokemon" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
