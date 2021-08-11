@@ -1,27 +1,27 @@
-package com.mona.codetest_boost.ui.home
+package com.mona.codetest_boost.ui.pokemon
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mona.codetest_boost.data.models.Common
+import com.mona.codetest_boost.data.models.Pokemon
 import com.mona.codetest_boost.data.repository.PokemonRepository
 import com.mona.codetest_boost.utils.AppResult
 import com.mona.codetest_boost.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repo: PokemonRepository) : ViewModel() {
+class PokemonViewModel(private val repo: PokemonRepository) : ViewModel() {
     val showLoading = ObservableBoolean()
-    val pokemonList = MutableLiveData<List<Common?>>()
+    val pokemon = MutableLiveData<Pokemon?>()
     val showError = SingleLiveEvent<String?>()
 
-    fun getAllPokemon() {
+    fun getPokemonById(id: String) {
         showLoading.set(true)
         viewModelScope.launch {
             showLoading.set(false)
-            when (val result = repo.getAllPokemon()) {
+            when (val result = repo.getPokemonById(id)) {
                 is AppResult.Success -> {
-                    pokemonList.value = result.successData.results
+                    pokemon.value = result.successData
                     showError.value = null
                 }
                 is AppResult.Error -> showError.value = result.message

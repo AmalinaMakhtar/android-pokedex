@@ -7,13 +7,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mona.codetest_boost.R
-import com.mona.codetest_boost.data.models.Results
+import com.mona.codetest_boost.data.models.Common
 import com.mona.codetest_boost.databinding.ItemPokemonBinding
 import com.mona.codetest_boost.ui.ItemListener
 
 class HomeAdapter(private val context: Context?, private val listener: ItemListener) : RecyclerView.Adapter<HomeAdapter.DashboardHolder>() {
 
-    var pokemonList: List<Results?> = ArrayList()
+    var pokemonList: List<Common?> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardHolder {
         val viewBinding: ItemPokemonBinding = DataBindingUtil.inflate(
@@ -30,7 +30,7 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
         return pokemonList.size
     }
 
-    fun setPokemon(pokemon: List<Results?>) {
+    fun setPokemon(pokemon: List<Common?>) {
         this.pokemonList = pokemon
         notifyDataSetChanged()
     }

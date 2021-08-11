@@ -9,7 +9,7 @@
 
         <variable
             name="pokemon"
-            type="com.mona.codetest_boost.data.models.Results" />
+            type="com.mona.codetest_boost.data.models.Common" />
 
         <variable
             name="itemCallback"

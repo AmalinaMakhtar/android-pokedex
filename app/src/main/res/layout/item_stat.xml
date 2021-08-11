@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pokemonStats"
+            type="com.mona.codetest_boost.data.models.Stat" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lblStat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@{pokemonStats.stat.name}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Pokemon" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressStats"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:padding="10dp"
+            android:progress="@{pokemonStats.base_stat}"
+            app:indicatorColor="@color/poke_red"
+            app:trackColor="#AAAAAA"
+            app:trackCornerRadius="10dp"
+            app:trackThickness="10dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</layout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/poke_purple">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="360"
+                android:endColor="#7C548C"
+                android:startColor="#9569A5" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+</ripple>
