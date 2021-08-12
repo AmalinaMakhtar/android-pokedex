@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.mona.codetest_boost.R
 import com.mona.codetest_boost.databinding.ActPokemonBinding
 import kotlinx.android.synthetic.main.act_pokemon.*
 import kotlinx.android.synthetic.main.dlg_filter_card.*
@@ -43,8 +44,9 @@ class PokemonActivity : AppCompatActivity() {
         pokemonViewModel.pokemon.observe(this@PokemonActivity, Observer {
             binding.pokemon = it
             adapter.setStats(it!!.stats)
-            binding.containerImage.setBackgroundColor(getColor(it.types.first().getTypeColor()))
-            binding.toolbar.setBackgroundColor(getColor(it.types.first().getTypeColor()))
+            val typeColor = it.types?.first()?.getTypeColor() ?: R.color.poke_red
+            binding.containerImage.setBackgroundColor(getColor(typeColor))
+            binding.toolbar.setBackgroundColor(getColor(typeColor))
 
             Glide.with(this@PokemonActivity)
                 .load(it.getImageUrl())

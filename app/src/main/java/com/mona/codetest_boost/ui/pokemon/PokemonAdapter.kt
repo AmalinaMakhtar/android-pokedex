@@ -28,8 +28,10 @@ class PokemonAdapter(private val context: Context) : RecyclerView.Adapter<Pokemo
         return statList.size
     }
 
-    fun setStats(stats: List<Stat?>) {
-        this.statList = stats
+    fun setStats(stats: List<Stat>?) {
+        if (stats != null) {
+            this.statList = stats
+        }
         notifyDataSetChanged()
     }
 

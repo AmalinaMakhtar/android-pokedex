@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -18,7 +17,6 @@ import com.mona.codetest_boost.R
 import com.mona.codetest_boost.databinding.FrgHomeBinding
 import com.mona.codetest_boost.ui.ItemListener
 import com.mona.codetest_boost.ui.pokemon.PokemonActivity
-import kotlinx.android.synthetic.main.frg_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), ItemListener {
@@ -45,24 +43,27 @@ class HomeFragment : Fragment(), ItemListener {
 
         initUI()
         initSortDialog()
+        retrieveData()
+    }
 
+    private fun retrieveData() {
         binding.viewModel = homeViewModel
-        homeViewModel.getAllPokemon()
-        homeViewModel.pokemonList.observe(viewLifecycleOwner, Observer {
+        homeViewModel.getCachePokemon()
+        homeViewModel.pokemonList.observe(viewLifecycleOwner, {
             if (it != null && it.isNotEmpty()) {
                 adapter.setPokemon(it)
             }
         })
-
-        binding.btnfilter.setOnClickListener {
-            showSortDialog()
-        }
     }
 
     private fun initUI() {
         adapter = HomeAdapter(context, this)
-        rvPokemon.layoutManager = GridLayoutManager(activity, 2)
-        rvPokemon.adapter = adapter
+        binding.rvPokemon.layoutManager = GridLayoutManager(activity, 2)
+        binding.rvPokemon.adapter = adapter
+
+        binding.btnfilter.setOnClickListener {
+            showSortDialog()
+        }
     }
 
     override fun onItemClick(id: String) {
@@ -70,6 +71,10 @@ class HomeFragment : Fragment(), ItemListener {
             putExtra("POKEMON_ID", id)
         }
         context?.startActivity(intent)
+    }
+
+    override fun onFavItemClick(id: String, isSelect: Boolean) {
+        homeViewModel.updateFavouritePokemon(id, isSelect)
     }
 
     private fun initSortDialog() {

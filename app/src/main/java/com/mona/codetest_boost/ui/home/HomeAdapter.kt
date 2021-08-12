@@ -7,13 +7,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mona.codetest_boost.R
-import com.mona.codetest_boost.data.models.Common
+import com.mona.codetest_boost.data.models.Pokemon
 import com.mona.codetest_boost.databinding.ItemPokemonBinding
 import com.mona.codetest_boost.ui.ItemListener
 
 class HomeAdapter(private val context: Context?, private val listener: ItemListener) : RecyclerView.Adapter<HomeAdapter.DashboardHolder>() {
 
-    var pokemonList: List<Common?> = ArrayList()
+    var pokemonList: List<Pokemon?> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardHolder {
         val viewBinding: ItemPokemonBinding = DataBindingUtil.inflate(
@@ -30,7 +30,7 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
         return pokemonList.size
     }
 
-    fun setPokemon(pokemon: List<Common?>) {
+    fun setPokemon(pokemon: List<Pokemon?>) {
         this.pokemonList = pokemon
         notifyDataSetChanged()
     }
@@ -41,19 +41,22 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
         fun onBind(position: Int) {
             val pokemonObj = pokemonList[position]
             viewBinding.pokemon = pokemonObj
-            viewBinding.txtPokemonName.text = pokemonObj!!.name.capitalize()
+            viewBinding.txtPokemonName.text = pokemonObj!!.name?.uppercase() ?: "Unknown"
 
             Glide
                 .with(context!!)
-                .load(pokemonObj.pokemonImage())
+                .load(pokemonObj.photoUrl)
                 .centerCrop()
                 .into(viewBinding.imgPokemon)
 
-            viewBinding.pokemonId = pokemonObj.pokemonId()
+            viewBinding.pokemonId = pokemonObj.id.toString()
             viewBinding.itemCallback = listener
 
-            viewBinding.imgFavourite.setOnClickListener {
+            viewBinding.imgFavourite.isSelected = pokemonObj.isFav!!
 
+            viewBinding.imgFavourite.setOnClickListener {
+                viewBinding.imgFavourite.isSelected = !viewBinding.imgFavourite.isSelected
+                listener.onFavItemClick(pokemonObj.id.toString(), viewBinding.imgFavourite.isSelected)
             }
 
         }

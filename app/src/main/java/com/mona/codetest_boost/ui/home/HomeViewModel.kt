@@ -4,28 +4,55 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mona.codetest_boost.data.models.Common
+import com.mona.codetest_boost.data.db.PokemonDao
+import com.mona.codetest_boost.data.models.Pokemon
 import com.mona.codetest_boost.data.repository.PokemonRepository
 import com.mona.codetest_boost.utils.AppResult
 import com.mona.codetest_boost.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repo: PokemonRepository) : ViewModel() {
+class HomeViewModel(private val repo: PokemonRepository, private val dao: PokemonDao) : ViewModel() {
     val showLoading = ObservableBoolean()
-    val pokemonList = MutableLiveData<List<Common?>>()
+    val pokemonList = MutableLiveData<List<Pokemon?>>()
     val showError = SingleLiveEvent<String?>()
 
-    fun getAllPokemon() {
+    init {
+        getLatestPokemon()
+    }
+
+     private fun getLatestPokemon() {
         showLoading.set(true)
         viewModelScope.launch {
             showLoading.set(false)
             when (val result = repo.getAllPokemon()) {
                 is AppResult.Success -> {
-                    pokemonList.value = result.successData.results
+                    val pokemons = result.successData.results
+                    pokemons.forEach {
+                        dao.addPokemon(Pokemon(id = it.pokemonId(), photoUrl = it.pokemonImage(), name = it.name))
+                    }
                     showError.value = null
                 }
                 is AppResult.Error -> showError.value = result.message
             }
         }
     }
+
+    fun getCachePokemon() {
+        viewModelScope.launch {
+            val list = dao.getAllPokemon()
+            if(list.isNullOrEmpty()) {
+                showError.value = "Seems like there's no data available right now. Please try again"
+            } else {
+                showError.value = null
+            }
+            pokemonList.value = list
+        }
+    }
+
+    fun updateFavouritePokemon(id: String, isSelect: Boolean) {
+        viewModelScope.launch {
+            dao.updatePokemon(id, isSelect)
+        }
+    }
+
 }
