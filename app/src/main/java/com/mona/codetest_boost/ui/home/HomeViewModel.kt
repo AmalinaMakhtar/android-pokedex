@@ -17,6 +17,7 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
     val pokemonList = MutableLiveData<List<Pokemon?>>()
     val sortedList = MutableLiveData<List<Pokemon?>>()
     val showError = SingleLiveEvent<String?>()
+    private val isDescending = SingleLiveEvent<Boolean?>()
 
     init {
         getLatestPokemon()
@@ -59,8 +60,16 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
 
     fun getSortedPokemon() {
         viewModelScope.launch {
-            sortedList.value = pokemonList.value?.sortedBy {
-                it?.id
+            sortedList.value = if(isDescending.value == true) {
+                isDescending.value = false
+                pokemonList.value?.sortedBy {
+                    it?.name
+                }
+            } else {
+                isDescending.value = true
+                pokemonList.value?.sortedByDescending {
+                    it?.name
+                }
             }
         }
     }
