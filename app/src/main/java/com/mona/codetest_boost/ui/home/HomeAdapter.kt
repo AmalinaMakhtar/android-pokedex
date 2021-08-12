@@ -42,6 +42,7 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
             val pokemonObj = pokemonList[position]
             viewBinding.pokemon = pokemonObj
             viewBinding.txtPokemonName.text = pokemonObj!!.name?.uppercase() ?: "Unknown"
+            viewBinding.txtPokemonId.text = pokemonObj.getPokemonId()
 
             Glide
                 .with(context!!)

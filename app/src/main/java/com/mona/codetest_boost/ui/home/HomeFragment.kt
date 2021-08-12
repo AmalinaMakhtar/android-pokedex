@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.mona.codetest_boost.R
 import com.mona.codetest_boost.databinding.FrgHomeBinding
@@ -24,11 +23,6 @@ class HomeFragment : Fragment(), ItemListener {
     private val homeViewModel by viewModel<HomeViewModel>()
     private lateinit var binding: FrgHomeBinding
     private lateinit var adapter: HomeAdapter
-    private var customView: View? = null
-    private var chipSortGroup: ChipGroup? = null
-    private var btnConfirm: Button? = null
-    private var dialog: AlertDialog? = null
-    private var sortGroupChip: Chip? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FrgHomeBinding.inflate(layoutInflater)
@@ -42,7 +36,6 @@ class HomeFragment : Fragment(), ItemListener {
         super.onViewCreated(view, savedInstanceState)
 
         initUI()
-        initSortDialog()
         retrieveData()
     }
 
@@ -61,8 +54,8 @@ class HomeFragment : Fragment(), ItemListener {
         binding.rvPokemon.layoutManager = GridLayoutManager(activity, 2)
         binding.rvPokemon.adapter = adapter
 
-        binding.btnfilter.setOnClickListener {
-            showSortDialog()
+        binding.fabSort.setOnClickListener {
+            refreshList()
         }
     }
 
@@ -77,26 +70,13 @@ class HomeFragment : Fragment(), ItemListener {
         homeViewModel.updateFavouritePokemon(id, isSelect)
     }
 
-    private fun initSortDialog() {
-        customView = LayoutInflater.from(context).inflate(R.layout.dlg_filter_card, null)
-        chipSortGroup = customView!!.findViewById(R.id.chipSortGroup)
-        btnConfirm = customView!!.findViewById(R.id.btnConfirm)
-        dialog = AlertDialog.Builder(context)
-            .setView(customView)
-            .create()
-        dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
-    private fun showSortDialog() {
-        chipSortGroup!!.setOnCheckedChangeListener { group, checkedId ->
-            sortGroupChip = group.findViewById(checkedId)
-        }
-
-        btnConfirm!!.setOnClickListener {
-            dialog!!.dismiss()
-        }
-
-        dialog!!.show()
+    private fun refreshList() {
+        homeViewModel.getSortedPokemon()
+        homeViewModel.sortedList.observe(viewLifecycleOwner, {
+            if (it != null && it.isNotEmpty()) {
+                adapter.setPokemon(it)
+            }
+        })
     }
 
 

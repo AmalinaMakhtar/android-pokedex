@@ -42,9 +42,9 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgPokemon"
-                    android:paddingTop="@dimen/activity_horizontal_margin"
                     android:layout_width="120dp"
-                    android:layout_height="120dp" />
+                    android:layout_height="120dp"
+                    android:paddingTop="@dimen/activity_horizontal_margin" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgFavourite"
@@ -55,11 +55,22 @@
             </FrameLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtPokemonId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/spacing_1x"
+                android:text="@{pokemon.pokemonId}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:fontFamily="@font/museo_sans_500"
+                tools:text="#001" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtPokemonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingTop="10dp"
                 android:text="@{pokemon.name.toUpperCase()}"
                 android:textColor="@color/black"
                 android:textSize="18sp"

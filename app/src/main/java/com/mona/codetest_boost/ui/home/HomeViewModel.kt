@@ -4,6 +4,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mona.codetest_boost.R
 import com.mona.codetest_boost.data.db.PokemonDao
 import com.mona.codetest_boost.data.models.Pokemon
 import com.mona.codetest_boost.data.repository.PokemonRepository
@@ -14,13 +15,14 @@ import kotlinx.coroutines.launch
 class HomeViewModel(private val repo: PokemonRepository, private val dao: PokemonDao) : ViewModel() {
     val showLoading = ObservableBoolean()
     val pokemonList = MutableLiveData<List<Pokemon?>>()
+    val sortedList = MutableLiveData<List<Pokemon?>>()
     val showError = SingleLiveEvent<String?>()
 
     init {
         getLatestPokemon()
     }
 
-     private fun getLatestPokemon() {
+    private fun getLatestPokemon() {
         showLoading.set(true)
         viewModelScope.launch {
             showLoading.set(false)
@@ -40,7 +42,7 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
     fun getCachePokemon() {
         viewModelScope.launch {
             val list = dao.getAllPokemon()
-            if(list.isNullOrEmpty()) {
+            if (list.isNullOrEmpty()) {
                 showError.value = "Seems like there's no data available right now. Please try again"
             } else {
                 showError.value = null
@@ -52,6 +54,14 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
     fun updateFavouritePokemon(id: String, isSelect: Boolean) {
         viewModelScope.launch {
             dao.updatePokemon(id, isSelect)
+        }
+    }
+
+    fun getSortedPokemon() {
+        viewModelScope.launch {
+            sortedList.value = pokemonList.value?.sortedBy {
+                it?.id
+            }
         }
     }
 

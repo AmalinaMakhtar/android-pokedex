@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.mona.codetest_boost.R
 import com.mona.codetest_boost.databinding.ActPokemonBinding
 import kotlinx.android.synthetic.main.act_pokemon.*
-import kotlinx.android.synthetic.main.dlg_filter_card.*
 import kotlinx.android.synthetic.main.frg_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

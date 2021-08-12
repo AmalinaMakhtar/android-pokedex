@@ -24,6 +24,7 @@ data class Pokemon(
     var photoUrl: String? = null
 ) : Serializable {
 
+    fun getPokemonId() = "#%03d".format(id)
     fun getImageUrl(): String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"
     fun getPokemonWeight(): String = String.format("%.1f kg", weight!!.toFloat() / 10)
     fun getPokemonHeight(): String = String.format("%.1f m", height!!.toFloat() / 10)
