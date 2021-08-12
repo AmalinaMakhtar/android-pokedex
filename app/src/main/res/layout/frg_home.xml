@@ -16,15 +16,41 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/off_white"
+        android:background="@color/poke_background"
         android:padding="@dimen/activity_horizontal_margin">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lblTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Pokedex"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    app:fontFamily="@font/museo_sans_700"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btnFavourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/btn_selection_favourite" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPokemon"
+                android:layout_below="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
