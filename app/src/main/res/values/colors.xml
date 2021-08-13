@@ -24,10 +24,10 @@
     <color name="poke_purple_light">#9569A5</color>
 
     <color name="poke_yellow">#FFCE4B</color>
-    <color name="poke_yellow_light">#FFDA5B</color>
+    <color name="poke_yellow_light">#8FFFDA5B</color>
 
     <color name="poke_brown">#B6746E</color>
-    <color name="poke_brown_light">#C1867F</color>
+    <color name="poke_brown_light">#A1C1867F</color>
 
     <color name="poke_grey">#F5F5F6</color>
     <color name="poke_background">#F6F6F6</color>
