@@ -12,7 +12,7 @@ data class Stat(
         return "Stat(base_stat=$base_stat, effort=$effort, stat=$stat)"
     }
 
-    fun getColorStats() : Int {
+    fun getColorStats(): Int {
         when (stat.name) {
             "hp" -> return R.color.poke_blue
             "attack" -> return R.color.poke_brown

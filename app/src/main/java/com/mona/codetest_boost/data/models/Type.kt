@@ -13,7 +13,7 @@ data class Type(
 
     fun getTypeColor(): Int {
         when (type.name) {
-            "bug","grass" -> return R.color.poke_green
+            "bug", "grass" -> return R.color.poke_green
             "electric" -> return R.color.poke_yellow
             "fighting", "fire", "fairy" -> return R.color.poke_red
             "ground", "normal", "dark", "rock", "steel" -> return R.color.poke_brown

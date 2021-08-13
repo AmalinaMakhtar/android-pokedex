@@ -34,13 +34,6 @@ fun Context.hasInternet(): Boolean {
     return result
 }
 
-fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
-    supportFragmentManager.inTransaction {
-        add(frameId, fragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.name) }
-    }
-}
-
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
     supportFragmentManager.inTransaction {
         replace(frameId, fragment)
