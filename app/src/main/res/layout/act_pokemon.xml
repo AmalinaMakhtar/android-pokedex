@@ -22,11 +22,13 @@
         android:layout_height="match_parent"
         android:background="@color/off_white">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:title="Pokemon Details">
+            android:layout_height="?attr/actionBarSize"
+            app:title="Pokemon"
+            app:titleCentered="true"
+            app:titleTextColor="@color/white">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgFavourite"
@@ -36,7 +38,7 @@
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
                 android:src="@drawable/favourite_item_selector" />
 
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <RelativeLayout
             android:id="@+id/containerImage"
@@ -62,9 +64,8 @@
                 android:gravity="center"
                 android:text="@{pokemon.name.toUpperCase()}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="36sp"
-                android:textStyle="bold"
                 app:fontFamily="@font/museo_sans_900"
                 tools:text="pikachu" />
 
@@ -90,78 +91,100 @@
                     app:cardCornerRadius="10dp"
                     app:cardElevation="3dp">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center">
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/lblAbout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:paddingTop="@dimen/activity_horizontal_margin"
+                            android:text="About"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/museo_sans_500" />
 
                         <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/containerWeight"
-                            android:layout_width="0dp"
+                            android:id="@+id/containerAbout"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="@dimen/activity_horizontal_margin">
+                            android:layout_below="@+id/lblAbout"
+                            android:layout_gravity="center"
+                            android:gravity="center">
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/txtWeight"
-                                android:layout_width="wrap_content"
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/containerWeight"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="@{pokemon.getPokemonWeight}"
-                                android:textColor="@color/black"
-                                android:textSize="24sp"
-                                app:fontFamily="@font/museo_sans_700"
-                                tools:text="299KG" />
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/activity_horizontal_margin">
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/lblWeight"
-                                android:layout_width="wrap_content"
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/txtWeight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{pokemon.getPokemonWeight}"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp"
+                                    app:fontFamily="@font/museo_sans_700"
+                                    tools:text="299KG" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/lblWeight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtWeight"
+                                    android:paddingTop="@dimen/spacing_0.5x"
+                                    android:text="Weight"
+                                    android:textSize="14sp"
+                                    app:fontFamily="@font/museo_sans_500" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginVertical="@dimen/spacing_2x"
+                                android:background="#838E8E8E" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/containerHeight"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/txtWeight"
-                                android:text="Weight"
-                                app:fontFamily="@font/museo_sans_500"
-                                android:textSize="14sp" />
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:padding="@dimen/activity_horizontal_margin">
 
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/txtHeight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{pokemon.getPokemonHeight}"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp"
+                                    app:fontFamily="@font/museo_sans_700"
+                                    tools:text="299KG" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/lblHeight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/txtWeight"
+                                    android:paddingTop="@dimen/spacing_0.5x"
+                                    android:text="Height"
+                                    android:textSize="14sp"
+                                    app:fontFamily="@font/museo_sans_500" />
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <View
-                            android:layout_width="2dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="@dimen/spacing_2x"
-                            android:background="#838E8E8E" />
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/containerHeight"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="@dimen/activity_horizontal_margin">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/txtHeight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{pokemon.getPokemonHeight}"
-                                android:textColor="@color/black"
-                                android:textSize="24sp"
-                                app:fontFamily="@font/museo_sans_700"
-                                tools:text="299KG" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/lblHeight"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/txtWeight"
-                                app:fontFamily="@font/museo_sans_500"
-                                android:text="Height"
-                                android:textSize="14sp" />
-
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    </RelativeLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -174,15 +197,31 @@
                     app:cardCornerRadius="10dp"
                     app:cardElevation="3dp">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvStats"
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerHorizontal="true"
-                        android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:itemCount="5"
-                        tools:listitem="@layout/item_stat" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingTop="@dimen/activity_horizontal_margin"
+                            android:text="Base Stats"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            app:fontFamily="@font/museo_sans_500" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvStats"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/item_stat" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </com.google.android.material.card.MaterialCardView>
             </RelativeLayout>

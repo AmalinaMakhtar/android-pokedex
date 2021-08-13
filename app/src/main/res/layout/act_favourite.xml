@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mona.codetest_boost.ui.favourite.FavouriteViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/off_white">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Pokemon"
+                app:titleTextColor="@color/white"
+                android:background="@color/poke_red"
+                app:titleCentered="true" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/header"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPokemon"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_below="@+id/appBarLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="@{viewModel.showError == null ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="15"
+            tools:listitem="@layout/item_pokemon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgPlaceholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/placeholder_empty"
+            android:visibility="@{viewModel.showError == null ? View.GONE : View.VISIBLE}"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_below="@+id/imgPlaceholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="@{viewModel.showError == null ? View.GONE : View.VISIBLE}"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="Opps. Seems like you haven't pick your favourite pokemon yet!"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:fontFamily="@font/museo_sans_700" />
+
+    </RelativeLayout>
+</layout>

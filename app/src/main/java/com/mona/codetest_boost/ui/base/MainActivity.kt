@@ -3,10 +3,8 @@ package com.mona.codetest_boost.ui.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mona.codetest_boost.R
-import com.mona.codetest_boost.ui.favourite.FavouriteFragment
 import com.mona.codetest_boost.ui.home.HomeFragment
 import com.mona.codetest_boost.utils.replaceFragment
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 

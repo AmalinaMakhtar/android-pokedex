@@ -14,7 +14,7 @@ class FavouriteViewModel(private val dao: PokemonDao) : ViewModel() {
 
     fun getFavouriteList() {
         viewModelScope.launch {
-            val list = dao.getFavPokemon(true)
+            val list = dao.getFavouriteList(true)
             if (list.isNullOrEmpty()) {
                 showError.value = "Seems like there's no data available right now. Please try again"
             } else {

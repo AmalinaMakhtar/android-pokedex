@@ -16,7 +16,7 @@ class PokemonActivity : AppCompatActivity() {
 
     private var pokemonId: String? = ""
     private lateinit var binding: ActPokemonBinding
-    private val pokemonViewModel by viewModel<PokemonViewModel>()
+    private val model by viewModel<PokemonViewModel>()
     private lateinit var adapter: PokemonAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,18 +29,31 @@ class PokemonActivity : AppCompatActivity() {
 
         initToolbar()
         initUi()
+        retrieveData()
     }
 
     private fun initToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        binding.toolbar.setNavigationIconTint(resources.getColor(R.color.white))
     }
 
     private fun initUi() {
-        binding.viewModel = pokemonViewModel
-        pokemonViewModel.getPokemonById(pokemonId.toString())
-        pokemonViewModel.pokemon.observe(this@PokemonActivity, Observer {
+        adapter = PokemonAdapter(this@PokemonActivity)
+        binding.rvStats.layoutManager = LinearLayoutManager(this@PokemonActivity)
+        binding.rvStats.adapter = adapter
+
+        binding.imgFavourite.setOnClickListener {
+            binding.imgFavourite.isSelected = !binding.imgFavourite.isSelected
+            pokemonId?.let { it1 -> model.updateFavouritePokemon(it1, binding.imgFavourite.isSelected) }
+        }
+    }
+
+    private fun retrieveData() {
+        binding.viewModel = model
+        model.getPokemonById(pokemonId.toString())
+        model.pokemon.observe(this@PokemonActivity, Observer {
             binding.pokemon = it
             adapter.setStats(it!!.stats)
             val typeColor = it.types?.first()?.getTypeColor() ?: R.color.poke_red
@@ -53,9 +66,10 @@ class PokemonActivity : AppCompatActivity() {
                 .into(binding.imgPokemon)
         })
 
-        adapter = PokemonAdapter(this@PokemonActivity)
-        rvStats.layoutManager = LinearLayoutManager(this@PokemonActivity)
-        rvStats.adapter = adapter
+        model.getFavouriteStatus(pokemonId.toString())
+        model.pokemonStatus.observe(this@PokemonActivity, Observer {
+            binding.imgFavourite.isSelected = it ?: false
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

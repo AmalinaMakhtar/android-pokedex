@@ -52,14 +52,6 @@ class HomeAdapter(private val context: Context?, private val listener: ItemListe
 
             viewBinding.pokemonId = pokemonObj.id.toString()
             viewBinding.itemCallback = listener
-
-            viewBinding.imgFavourite.isSelected = pokemonObj.isFav!!
-
-            viewBinding.imgFavourite.setOnClickListener {
-                viewBinding.imgFavourite.isSelected = !viewBinding.imgFavourite.isSelected
-                listener.onFavItemClick(pokemonObj.id.toString(), viewBinding.imgFavourite.isSelected)
-            }
-
         }
     }
 

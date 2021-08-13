@@ -16,44 +16,59 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/poke_background"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:background="@color/poke_background">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/header"
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/lblTitle"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="Pokedex"
-                    android:textColor="@color/black"
-                    android:textSize="26sp"
-                    app:fontFamily="@font/museo_sans_700"/>
+                <FrameLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/poke_red"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:letterSpacing="0.1"
+                        android:text="POKEDEX"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        app:fontFamily="@font/museo_sans_700" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/btnFavourite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                        android:src="@drawable/btn_unselect_favourite" />
+                </FrameLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btnFavourite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/btn_selection_favourite" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/header" />
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPokemon"
-                android:layout_below="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/appBarLayout"
                 android:layout_centerHorizontal="true"
+                android:paddingTop="@dimen/activity_horizontal_margin"
                 android:visibility="@{viewModel.showError == null ? View.VISIBLE : View.GONE}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
@@ -71,9 +86,10 @@
                 tools:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgPlaceholder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/round_info_24" />
+                    android:src="@drawable/placeholder_empty" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtError"
@@ -81,6 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:padding="@dimen/activity_horizontal_margin"
                     android:text="@{viewModel.showError}"
                     android:textColor="@color/black"
                     android:textSize="18sp"

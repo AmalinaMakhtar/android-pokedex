@@ -42,7 +42,13 @@ class PokemonAdapter(private val context: Context) : RecyclerView.Adapter<Pokemo
             val statObj = statList[position]
             viewBinding.pokemonStats = statObj
             if (statObj != null) {
-                viewBinding.lblStat.text = statObj.stat.name
+                val status = when(statObj.stat.name) {
+                    "special-attack" -> "Sp. Atk"
+                    "special-defense" -> "Sp. Def"
+                    else -> statObj.stat.name
+                }
+                viewBinding.lblStat.text = status?.capitalize() ?: "Unknown"
+                viewBinding.lblStatNumber.text = statObj.base_stat.toString()
                 viewBinding.progressStats.progress = statObj.base_stat
                 viewBinding.progressStats.setIndicatorColor(context.getColor(statObj.getColorStats()))
             }

@@ -15,32 +15,44 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center"
         android:paddingTop="@dimen/spacing_1.5x"
         android:paddingHorizontal="@dimen/activity_horizontal_margin">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/lblStat"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@{pokemonStats.stat.name.toUpperCase()}"
+            android:gravity="center|start"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:fontFamily="@font/museo_sans_500"
             tools:text="Pokemon" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lblStatNumber"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:fontFamily="@font/museo_sans_700"
+            tools:text="35" />
+
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressStats"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="5dp"
             android:padding="10dp"
             android:progress="@{pokemonStats.base_stat}"
             app:indicatorColor="@color/poke_red"
-            app:trackColor="#AAAAAA"
+            app:trackColor="#F6F6F6"
             app:trackCornerRadius="10dp"
-            app:trackThickness="10dp" />
+            app:trackThickness="5dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -1,7 +1,10 @@
 package com.mona.codetest_boost.data.models
 
 import androidx.annotation.NonNull
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.mona.codetest_boost.utils.Converters
 import java.io.Serializable
 

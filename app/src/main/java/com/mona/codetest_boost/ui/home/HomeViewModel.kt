@@ -4,7 +4,6 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mona.codetest_boost.R
 import com.mona.codetest_boost.data.db.PokemonDao
 import com.mona.codetest_boost.data.models.Pokemon
 import com.mona.codetest_boost.data.repository.PokemonRepository
@@ -52,15 +51,9 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
         }
     }
 
-    fun updateFavouritePokemon(id: String, isSelect: Boolean) {
-        viewModelScope.launch {
-            dao.updatePokemon(id, isSelect)
-        }
-    }
-
     fun getSortedPokemon() {
         viewModelScope.launch {
-            sortedList.value = if(isDescending.value == true) {
+            sortedList.value = if (isDescending.value == true) {
                 isDescending.value = false
                 pokemonList.value?.sortedBy {
                     it?.name

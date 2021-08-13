@@ -25,7 +25,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
         android:onClick="@{() -> itemCallback.onItemClick(pokemonId)}"
         android:orientation="vertical"
         app:cardCornerRadius="10dp">
@@ -36,23 +35,10 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgPokemon"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:paddingTop="@dimen/activity_horizontal_margin" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgFavourite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@drawable/favourite_item_selector" />
-            </FrameLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgPokemon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtPokemonId"
@@ -76,7 +62,6 @@
                 android:textSize="18sp"
                 app:fontFamily="@font/museo_sans_700"
                 tools:text="Pokemon" />
-
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

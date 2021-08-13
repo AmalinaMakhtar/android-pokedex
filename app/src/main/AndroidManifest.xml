@@ -22,6 +22,9 @@
         <activity
             android:name=".ui.pokemon.PokemonActivity"
             android:theme="@style/Theme.CodeTest_Boost" />
+        <activity
+            android:name=".ui.favourite.FavouriteActivity"
+            android:theme="@style/Theme.CodeTest_Boost" />
     </application>
 
 </manifest>
