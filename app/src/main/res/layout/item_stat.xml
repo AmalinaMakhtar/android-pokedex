@@ -15,16 +15,16 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:paddingTop="@dimen/spacing_1.5x"
-        android:paddingHorizontal="@dimen/activity_horizontal_margin">
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/spacing_1.5x">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/lblStat"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center|start"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -34,8 +34,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/lblStatNumber"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -45,8 +45,8 @@
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressStats"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="5dp"
+            android:layout_weight="2"
             android:padding="10dp"
             android:progress="@{pokemonStats.base_stat}"
             app:indicatorColor="@color/poke_red"

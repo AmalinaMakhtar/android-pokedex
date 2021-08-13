@@ -21,34 +21,34 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Pokemon"
-                app:titleTextColor="@color/white"
                 android:background="@color/poke_red"
-                app:titleCentered="true" />
+                app:title="Pokemon"
+                app:titleCentered="true"
+                app:titleTextColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/header"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPokemon"
-            android:paddingTop="@dimen/activity_horizontal_margin"
-            android:layout_below="@+id/appBarLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/appBarLayout"
             android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/activity_horizontal_margin"
             android:visibility="@{viewModel.showError == null ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
@@ -65,15 +65,15 @@
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_below="@+id/imgPlaceholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imgPlaceholder"
             android:gravity="center"
-            android:visibility="@{viewModel.showError == null ? View.GONE : View.VISIBLE}"
             android:padding="@dimen/activity_horizontal_margin"
             android:text="Opps. Seems like you haven't pick your favourite pokemon yet!"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:visibility="@{viewModel.showError == null ? View.GONE : View.VISIBLE}"
             app:fontFamily="@font/museo_sans_700" />
 
     </RelativeLayout>

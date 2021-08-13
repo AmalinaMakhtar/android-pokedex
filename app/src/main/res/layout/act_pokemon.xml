@@ -87,8 +87,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-                    android:visibility="@{viewModel.showLoading ? View.GONE : View.VISIBLE}"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:visibility="@{viewModel.showLoading ? View.GONE : View.VISIBLE}"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="3dp">
@@ -115,8 +115,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lblAbout"
                             android:layout_gravity="center"
-                            android:padding="@dimen/activity_horizontal_margin"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:padding="@dimen/activity_horizontal_margin">
 
                             <androidx.appcompat.widget.LinearLayoutCompat
                                 android:id="@+id/containerWeight"
@@ -192,8 +192,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/containerPhysical"
                     android:layout_centerHorizontal="true"
-                    android:visibility="@{viewModel.showLoading ? View.GONE : View.VISIBLE}"
                     android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:visibility="@{viewModel.showLoading ? View.GONE : View.VISIBLE}"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="3dp">
