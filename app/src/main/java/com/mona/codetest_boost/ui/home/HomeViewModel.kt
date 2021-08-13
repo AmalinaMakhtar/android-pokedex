@@ -22,6 +22,9 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
         getLatestPokemon()
     }
 
+    /**
+     * By default it will be retrieving data from api
+     */
     private fun getLatestPokemon() {
         showLoading.set(true)
         viewModelScope.launch {
@@ -39,8 +42,13 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
         }
     }
 
+    /**
+     * If there's no data available from the cache, it will show indicator the user
+     */
     fun getCachePokemon() {
+        showLoading.set(true)
         viewModelScope.launch {
+            showLoading.set(false)
             val list = dao.getAllPokemon()
             if (list.isNullOrEmpty()) {
                 showError.value = "Seems like there's no data available right now. Please try again"
@@ -51,6 +59,9 @@ class HomeViewModel(private val repo: PokemonRepository, private val dao: Pokemo
         }
     }
 
+    /**
+     * Enable user to sort pokemon by name descending and ascending order
+     */
     fun getSortedPokemon() {
         viewModelScope.launch {
             sortedList.value = if (isDescending.value == true) {

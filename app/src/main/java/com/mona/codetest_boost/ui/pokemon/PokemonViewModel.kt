@@ -17,6 +17,9 @@ class PokemonViewModel(private val repo: PokemonRepository, private val dao: Pok
     val showError = SingleLiveEvent<String?>()
     val pokemonStatus = MutableLiveData<Boolean?>()
 
+    /**
+     * Retrieving pokemon details by id
+     */
     fun getPokemonById(id: String) {
         showLoading.set(true)
         viewModelScope.launch {
@@ -31,12 +34,18 @@ class PokemonViewModel(private val repo: PokemonRepository, private val dao: Pok
         }
     }
 
+    /**
+     * Updating pokemon fav status by id and dynamic flag
+     */
     fun updateFavouritePokemon(id: String, isSelect: Boolean) {
         viewModelScope.launch {
             dao.updatePokemon(id, isSelect)
         }
     }
 
+    /**
+     * To retrieve pokemon fav status by id via cache for isFav field only
+     */
     fun getFavouriteStatus(id: String) {
         viewModelScope.launch {
             pokemonStatus.value = dao.getFavPokemon(id)

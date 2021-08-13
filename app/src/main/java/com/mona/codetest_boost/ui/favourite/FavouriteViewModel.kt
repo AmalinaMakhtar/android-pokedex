@@ -12,6 +12,10 @@ class FavouriteViewModel(private val dao: PokemonDao) : ViewModel() {
     val pokemonList = MutableLiveData<List<Pokemon?>>()
     val showError = SingleLiveEvent<String?>()
 
+
+    /**
+     * Retrieve favourite pokemon from db by checking the status of the field
+     */
     fun getFavouriteList() {
         viewModelScope.launch {
             val list = dao.getFavouriteList(true)

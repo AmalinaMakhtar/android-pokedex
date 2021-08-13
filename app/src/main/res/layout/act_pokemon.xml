@@ -87,7 +87,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:visibility="@{viewModel.showLoading ? View.GONE : View.VISIBLE}"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="3dp">
 
@@ -113,6 +115,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/lblAbout"
                             android:layout_gravity="center"
+                            android:padding="@dimen/activity_horizontal_margin"
                             android:gravity="center">
 
                             <androidx.appcompat.widget.LinearLayoutCompat
@@ -121,8 +124,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:orientation="vertical"
-                                android:padding="@dimen/activity_horizontal_margin">
+                                android:orientation="vertical">
 
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:id="@+id/txtWeight"
@@ -138,7 +140,6 @@
                                     android:id="@+id/lblWeight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtWeight"
                                     android:paddingTop="@dimen/spacing_0.5x"
                                     android:text="Weight"
                                     android:textSize="14sp"
@@ -158,8 +159,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:orientation="vertical"
-                                android:padding="@dimen/activity_horizontal_margin">
+                                android:orientation="vertical">
 
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:id="@+id/txtHeight"
@@ -175,7 +175,6 @@
                                     android:id="@+id/lblHeight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@+id/txtWeight"
                                     android:paddingTop="@dimen/spacing_0.5x"
                                     android:text="Height"
                                     android:textSize="14sp"
@@ -193,7 +192,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/containerPhysical"
                     android:layout_centerHorizontal="true"
+                    android:visibility="@{viewModel.showLoading ? View.GONE : View.VISIBLE}"
                     android:layout_margin="@dimen/activity_horizontal_margin"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="3dp">
 
@@ -224,6 +225,14 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </com.google.android.material.card.MaterialCardView>
+
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:visibility="@{viewModel.showLoading ? View.VISIBLE : View.GONE}"
+                    tools:visibility="gone" />
             </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>

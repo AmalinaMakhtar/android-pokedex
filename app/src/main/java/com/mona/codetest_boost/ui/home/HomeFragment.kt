@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.google.android.material.snackbar.Snackbar
 import com.mona.codetest_boost.R
 import com.mona.codetest_boost.databinding.FrgHomeBinding
 import com.mona.codetest_boost.ui.ItemListener
 import com.mona.codetest_boost.ui.favourite.FavouriteActivity
 import com.mona.codetest_boost.ui.pokemon.PokemonActivity
+import com.mona.codetest_boost.utils.hasInternet
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -80,6 +82,9 @@ class HomeFragment : Fragment(), ItemListener {
     }
 
     override fun onItemClick(id: String) {
+        if(!context?.hasInternet()!!) {
+            return Snackbar.make(binding.parentContainer, "Opps! Please check your connection to proceed!", Snackbar.LENGTH_SHORT).show()
+        }
         val intent = Intent(context, PokemonActivity::class.java).apply {
             putExtra("POKEMON_ID", id)
         }
